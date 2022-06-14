@@ -3,7 +3,7 @@ package geerpc
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/merphix/geerpc/codec"
+	"github.com/merphix-han/geerpc/codec"
 	"io"
 	"log"
 	"net"
@@ -121,7 +121,7 @@ func (server *Server) sendResponse(cc codec.Codec,h *codec.Header,body interface
 	}
 }
 
-func (server *Server)  handlerRequest(cc codec.Codec,req request,sending *sync.Mutex,wg *sync.WaitGroup) {
+func (server *Server)  handlerRequest(cc codec.Codec,req *request,sending *sync.Mutex,wg *sync.WaitGroup) {
 	defer wg.Done()
 	log.Println(req.h,req.argv.Elem())
 	req.replyv = reflect.ValueOf(fmt.Sprintf("geerpc resq %d",req.h.Seq))
