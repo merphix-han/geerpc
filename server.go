@@ -44,6 +44,10 @@ func (server *Server) Accept(lis net.Listener) {
 	}
 }
 
+// Accept accepts connections on the listener and serves requests
+// for each incoming connection.
+func Accept(lis net.Listener) { DefaultServer.Accept(lis) }
+
 func(server *Server) ServeConn(conn io.ReadWriteCloser) {
 	defer func() { _ = conn.Close()}()
 	var opt Option
